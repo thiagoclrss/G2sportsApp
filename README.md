@@ -10,15 +10,15 @@
 
 - Subir código pro git
 
-  `git checkout -b nome_da_branch`
+  `git checkout -b nome_da_branch`("criar branch")
 
-  `git pull origin main`
+  `git pull origin main` ("atualizar o codigo")
 
-  `git add .`
+  `git add .` ("adicionar codigo alterado")
 
-  `git commit -m "mensagem de tarefa"`
+  `git commit -m "mensagem de tarefa"` ("adicionar a mensagem do que fez no codigo")
 
-  `git push origin main`
+  `git push origin main`("enviar codigo alterado")
 
 - Figma
 
