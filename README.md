@@ -2,6 +2,8 @@
 
 - Configuração git
 
+  `git clone https://github.com/thiagoclrss/G2sportsApps`
+
   `git init`
 
   `git remote add origin https://github.com/thiagoclrss/G2sportsApp`
