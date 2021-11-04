@@ -17,3 +17,6 @@
   `git commit -m "mensagem de tarefa"`
 
   `git push origin main`
+ 
+
+  - Figma https://www.figma.com/file/uKpVNuJXdlPjx8j6nnNzYJ/G2sportsApp?node-id=0%3A1
