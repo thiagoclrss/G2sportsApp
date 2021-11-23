@@ -2,7 +2,7 @@
 
 - Configuração git
 
-  `git clone https://github.com/thiagoclrss/G2sportsApps`
+  `git clone https://github.com/thiagoclrss/G2sportsApp`
 
   `git init`
 
