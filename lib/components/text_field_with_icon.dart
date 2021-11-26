@@ -7,17 +7,29 @@ class TextFieldWithIcon extends StatelessWidget {
     required this.prefixIcon,
     required this.labelText,
     required this.width,
+    required this.validator,
+    required this.controller,
+    required this.keyboardType,
+    required this.isObscure,
   }) : super(key: key);
 
   final IconData prefixIcon;
   final String labelText;
   final double width;
+  final TextEditingController? controller;
+  final TextInputType keyboardType;
+  final bool isObscure;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      child: TextField(
+      child: TextFormField(
+        obscureText: isObscure,
+        keyboardType: keyboardType,
+        controller: controller,
+        validator: validator,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blue.shade500),

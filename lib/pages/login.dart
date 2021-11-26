@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:g2sports/components/button_with_icon.dart';
 import 'package:g2sports/components/button_with_text.dart';
+import 'package:g2sports/components/login_form.dart';
 import 'package:g2sports/components/text_field_with_icon.dart';
 
 class Login extends StatefulWidget {
@@ -80,27 +81,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 SizedBox(height: 50),
-                TextFieldWithIcon(
-                  prefixIcon: FontAwesomeIcons.userAlt,
-                  labelText: "E-mail, CPF ou CNPJ",
-                  width: 313,
-                ),
-                SizedBox(height: 20),
-                TextFieldWithIcon(
-                  prefixIcon: FontAwesomeIcons.key,
-                  labelText: "Senha",
-                  width: 313,
-                ),
-                SizedBox(height: 50),
-                ButtonWithText(
-                  label: "Entrar",
-                  btnColor: Color(0xFF593CFF),
-                  txtColor: Colors.white,
-                  txtSize: 40,
-                  width: 313,
-                  height: 60,
-                  handlePress: () {},
-                ),
+                LoginForm(),
                 SizedBox(height: 25),
                 ButtonWithText(
                   label: "Criar conta",
