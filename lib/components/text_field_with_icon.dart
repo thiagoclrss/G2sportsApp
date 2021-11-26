@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldWithIcon extends StatelessWidget {
   const TextFieldWithIcon({
@@ -10,7 +10,9 @@ class TextFieldWithIcon extends StatelessWidget {
     required this.validator,
     required this.controller,
     required this.keyboardType,
-    required this.isObscure,
+    this.isObscure,
+    this.hintText,
+    this.inputFormatters,
   }) : super(key: key);
 
   final IconData prefixIcon;
@@ -18,7 +20,9 @@ class TextFieldWithIcon extends StatelessWidget {
   final double width;
   final TextEditingController? controller;
   final TextInputType keyboardType;
-  final bool isObscure;
+  final bool? isObscure;
+  final String? hintText;
+  final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
 
   @override
@@ -26,11 +30,13 @@ class TextFieldWithIcon extends StatelessWidget {
     return Container(
       width: width,
       child: TextFormField(
-        obscureText: isObscure,
+        inputFormatters: inputFormatters ?? [],
+        obscureText: isObscure ?? false,
         keyboardType: keyboardType,
         controller: controller,
         validator: validator,
         decoration: InputDecoration(
+          hintText: hintText ?? '',
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blue.shade500),
           ),

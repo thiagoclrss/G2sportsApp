@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:g2sports/components/button_with_text.dart';
 import 'package:g2sports/components/register_form.dart';
+
 import 'package:g2sports/pages/login.dart';
 
 class Register extends StatefulWidget {

@@ -1,6 +1,7 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:validadores/Validador.dart';
+
 import 'package:g2sports/components/button_with_text.dart';
 import 'package:g2sports/components/text_field_with_icon.dart';
 
@@ -53,11 +54,15 @@ class LoginFormState extends State<LoginForm> {
             keyboardType: TextInputType.emailAddress,
             controller: emailController,
             prefixIcon: FontAwesomeIcons.userAlt,
-            labelText: "E-mail, CPF ou CNPJ",
+            labelText: "E-mail",
             width: 313,
-            validator: (value) => EmailValidator.validate(value.toString())
-                ? null
-                : "E-mail inválido",
+            validator: (value) {
+              return Validador()
+                  .add(Validar.EMAIL, msg: 'E-mail inválido')
+                  .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                  .valido(value);
+            },
+            hintText: "email@email.com",
           ),
           SizedBox(height: 20),
           TextFieldWithIcon(
@@ -67,7 +72,14 @@ class LoginFormState extends State<LoginForm> {
             prefixIcon: FontAwesomeIcons.key,
             labelText: "Senha",
             width: 313,
-            validator: validatePassword,
+            validator: (value) {
+              return Validador()
+                  .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
+                  .minLength(6,
+                      msg: 'A senha precisa ter no mínimo 6 caracteres')
+                  .valido(value, clearNoNumber: true);
+            },
+            hintText: "*****",
           ),
           SizedBox(height: 50),
           ButtonWithText(

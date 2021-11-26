@@ -1,9 +1,10 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:validadores/Validador.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:g2sports/components/button_with_text.dart';
 import 'package:g2sports/components/text_field_with_icon.dart';
-import 'package:validadores/Validador.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({Key? key}) : super(key: key);
@@ -18,6 +19,8 @@ class RegisterFormState extends State<RegisterForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController cpfController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final cpfMask = MaskTextInputFormatter(
+      mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
 
   final _formKey = GlobalKey<FormState>();
 
@@ -52,11 +55,12 @@ class RegisterFormState extends State<RegisterForm> {
       child: Column(
         children: [
           TextFieldWithIcon(
+            hintText: "email@email.com",
             isObscure: false,
             keyboardType: TextInputType.emailAddress,
             controller: emailController,
             prefixIcon: FontAwesomeIcons.userAlt,
-            labelText: "E-mail, CPF ou CNPJ",
+            labelText: "E-mail",
             width: 313,
             validator: (value) {
               return Validador()
@@ -64,12 +68,11 @@ class RegisterFormState extends State<RegisterForm> {
                   .add(Validar.OBRIGATORIO, msg: 'Campo obrigatório')
                   .valido(value);
             },
-            // validator: (value) => EmailValidator.validate(value.toString())
-            //     ? null
-            //     : "E-mail inválido",
           ),
           SizedBox(height: 20),
           TextFieldWithIcon(
+            hintText: '123.456.789-00',
+            inputFormatters: [cpfMask],
             isObscure: false,
             keyboardType: TextInputType.visiblePassword,
             controller: cpfController,
@@ -87,6 +90,7 @@ class RegisterFormState extends State<RegisterForm> {
           ),
           SizedBox(height: 20),
           TextFieldWithIcon(
+            hintText: "*******",
             isObscure: true,
             keyboardType: TextInputType.visiblePassword,
             controller: passwordController,
