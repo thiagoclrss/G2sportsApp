@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 import 'package:g2sports/components/loading.dart';
 import 'package:g2sports/pages/login.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(home: App()));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent, // navigation bar color
+    statusBarColor: Colors.transparent, // status bar color
+  ));
+  runApp(
+    MaterialApp(
+      home: App(),
+    ),
+  );
 }
 
 class App extends StatefulWidget {
@@ -25,7 +34,7 @@ class _AppState extends State<App> {
         if (snapshot.hasError) {
           return Container(width: 100, height: 100, color: Colors.red);
         } else if (snapshot.connectionState == ConnectionState.done) {
-          return Container(child: Login());
+          return Login();
           // return Container(width: 100, height: 100, color: Colors.green);
         }
         return Loading();

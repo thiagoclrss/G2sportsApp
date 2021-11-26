@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:g2sports/components/button_with_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:g2sports/components/button_with_icon.dart';
+import 'package:g2sports/components/button_with_text.dart';
 import 'package:g2sports/components/text_field_with_icon.dart';
 
 class Login extends StatefulWidget {
@@ -18,77 +20,101 @@ class _LoginState extends State<Login> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/images/g2sportslogo.png",
-                width: 250,
-                height: 250,
-              )
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ButtonWithIcon(
-                icon: FontAwesomeIcons.facebook,
-                buttonLabel: "Entrar com facebook",
-                buttonColor: Colors.blue.shade700,
-                handlePress: () {
-                  print("Entrar com facebook");
-                },
-                width: 270,
-              ),
-              SizedBox(height: 20),
-              ButtonWithIcon(
-                icon: FontAwesomeIcons.google,
-                buttonLabel: "Entrar com google",
-                buttonColor: Colors.blue,
-                handlePress: () {
-                  print("Entrar com Google");
-                },
-                width: 270,
-              ),
-              SizedBox(height: 50),
-              Padding(
-                padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                      child: Text("OU"),
-                    ),
-                    Expanded(
-                        child: Divider(
-                      thickness: 2,
-                    )),
-                  ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/g2sportslogo.png",
+                  width: 250,
+                  height: 250,
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ButtonWithIcon(
+                  icon: FontAwesomeIcons.facebook,
+                  label: "Entrar com facebook",
+                  btnColor: Colors.blue.shade700,
+                  handlePress: () {
+                    print("Entrar com facebook");
+                  },
+                  width: 313,
+                  height: 50,
                 ),
-              ),
-              SizedBox(height: 50),
-              TextFieldWithIcon(
-                prefixIcon: FontAwesomeIcons.userAlt,
-                labelText: "E-mail, CPF ou CNPJ",
-                width: 270,
-              ),
-              SizedBox(height: 20),
-              TextFieldWithIcon(
-                prefixIcon: FontAwesomeIcons.key,
-                labelText: "Senha",
-                width: 270,
-              )
-            ],
-          )
-        ],
+                SizedBox(height: 20),
+                ButtonWithIcon(
+                  icon: FontAwesomeIcons.google,
+                  label: "Entrar com google",
+                  btnColor: Colors.blue,
+                  handlePress: () {
+                    print("Entrar com Google");
+                  },
+                  width: 313,
+                  height: 50,
+                ),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 2,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                        child: Text("OU"),
+                      ),
+                      Expanded(
+                          child: Divider(
+                        thickness: 2,
+                      )),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 50),
+                TextFieldWithIcon(
+                  prefixIcon: FontAwesomeIcons.userAlt,
+                  labelText: "E-mail, CPF ou CNPJ",
+                  width: 313,
+                ),
+                SizedBox(height: 20),
+                TextFieldWithIcon(
+                  prefixIcon: FontAwesomeIcons.key,
+                  labelText: "Senha",
+                  width: 313,
+                ),
+                SizedBox(height: 50),
+                ButtonWithText(
+                  label: "Entrar",
+                  btnColor: Color(0xFF593CFF),
+                  txtColor: Colors.white,
+                  txtSize: 40,
+                  width: 313,
+                  height: 60,
+                  handlePress: () {},
+                ),
+                SizedBox(height: 25),
+                ButtonWithText(
+                  label: "Criar conta",
+                  btnColor: Colors.white,
+                  txtColor: Colors.grey,
+                  txtSize: 28,
+                  width: 313,
+                  height: 60,
+                  handlePress: () {},
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
