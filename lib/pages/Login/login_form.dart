@@ -39,6 +39,7 @@ class LoginFormState extends State<LoginForm> {
             backgroundColor: Colors.green,
           ),
         );
+        print(userCredential);
         setState(() {
           isLoading = false;
         });

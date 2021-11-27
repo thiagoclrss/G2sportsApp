@@ -10,7 +10,7 @@ class Loading extends StatelessWidget {
       height: 200.0,
       alignment: Alignment.center,
       child: CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.pink),
         strokeWidth: 5.0,
       ),
     );

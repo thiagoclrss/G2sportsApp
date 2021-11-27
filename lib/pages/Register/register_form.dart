@@ -112,7 +112,7 @@ class RegisterFormState extends State<RegisterForm> {
                   .valido(value);
             },
           ),
-          SizedBox(height: 20),
+          // SizedBox(height: 20),
           // TextFieldWithIcon(
           //   hintText: '123.456.789-00',
           //   inputFormatters: [cpfMask],
