@@ -27,10 +27,10 @@ class LoginFormState extends State<LoginForm> {
     String password = passwordController.text.toString();
 
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = true;
+      });
       try {
-        setState(() {
-          isLoading = true;
-        });
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
         ScaffoldMessenger.of(context).showSnackBar(
@@ -39,7 +39,6 @@ class LoginFormState extends State<LoginForm> {
             backgroundColor: Colors.green,
           ),
         );
-        print(userCredential);
         setState(() {
           isLoading = false;
         });
@@ -63,6 +62,9 @@ class LoginFormState extends State<LoginForm> {
                 backgroundColor: Colors.red,
               ),
             );
+            setState(() {
+              isLoading = false;
+            });
             break;
           default:
             ScaffoldMessenger.of(context).showSnackBar(
@@ -71,10 +73,10 @@ class LoginFormState extends State<LoginForm> {
                 backgroundColor: Colors.red,
               ),
             );
+            setState(() {
+              isLoading = false;
+            });
         }
-        setState(() {
-          isLoading = false;
-        });
       }
     }
   }

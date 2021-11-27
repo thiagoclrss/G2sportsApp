@@ -19,34 +19,66 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   FirebaseAuth auth = FirebaseAuth.instance;
-  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     void handleGoogleSignIn() async {
-      setState(() {
-        isLoading = true;
-      });
-      context.loaderOverlay.show();
-      UserCredential userCredential = await signInWithGoogle();
-      setState(() {
-        isLoading = false;
-      });
-      context.loaderOverlay.hide();
-      print(userCredential);
+      try {
+        context.loaderOverlay.show();
+        UserCredential userCredential = await signInWithGoogle();
+        context.loaderOverlay.hide();
+      } on FirebaseAuthException catch (e) {
+        switch (e.code) {
+          case 'account-exists-with-different-credential':
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                    'Já existe uma conta com o mesmo endereço de e-mail, mas com credenciais de login diferentes. Faça login usando um provedor associado a este endereço de e-mail.'),
+                backgroundColor: Colors.red,
+                duration: Duration(seconds: 6),
+              ),
+            );
+            context.loaderOverlay.hide();
+            break;
+          default:
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Erro ao realizar login pelo google.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            context.loaderOverlay.hide();
+        }
+      }
     }
 
     void handleFacebookSignIn() async {
-      setState(() {
-        isLoading = true;
-      });
-      context.loaderOverlay.show();
-      UserCredential userCredential = await signInWithFacebook();
-      setState(() {
-        isLoading = false;
-      });
-      context.loaderOverlay.hide();
-      print(userCredential);
+      try {
+        context.loaderOverlay.show();
+        UserCredential userCredential = await signInWithFacebook();
+        context.loaderOverlay.hide();
+      } on FirebaseAuthException catch (e) {
+        switch (e.code) {
+          case 'account-exists-with-different-credential':
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                    'Já existe uma conta com o mesmo endereço de e-mail, mas com credenciais de login diferentes. Faça login usando um provedor associado a este endereço de e-mail.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            context.loaderOverlay.hide();
+            break;
+          default:
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Erro ao realizar login pelo facebook.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            context.loaderOverlay.hide();
+        }
+      }
     }
 
     return Scaffold(
