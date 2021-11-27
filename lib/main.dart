@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:g2sports/components/loading.dart';
 import 'package:g2sports/pages/Login/index.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +35,12 @@ class _AppState extends State<App> {
         if (snapshot.hasError) {
           return Container(width: 100, height: 100, color: Colors.red);
         } else if (snapshot.connectionState == ConnectionState.done) {
-          return Login();
+          return LoaderOverlay(
+            child: Login(),
+            overlayOpacity: 0.7,
+            overlayColor: Colors.black,
+            disableBackButton: true,
+          );
           // return Container(width: 100, height: 100, color: Colors.green);
         }
         return Loading();

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:g2sports/components/button_with_icon.dart';
 import 'package:g2sports/components/button_with_text.dart';
@@ -19,19 +20,21 @@ class _LoginState extends State<Login> {
   FirebaseAuth auth = FirebaseAuth.instance;
   bool isLoading = false;
 
-  void handleGoogleSignIn() async {
-    setState(() {
-      isLoading = true;
-    });
-    UserCredential userCredential = await signInWithGoogle();
-    setState(() {
-      isLoading = false;
-    });
-    print(userCredential);
-  }
-
   @override
   Widget build(BuildContext context) {
+    void handleGoogleSignIn() async {
+      setState(() {
+        isLoading = true;
+      });
+      context.loaderOverlay.show();
+      UserCredential userCredential = await signInWithGoogle();
+      setState(() {
+        isLoading = false;
+      });
+      context.loaderOverlay.hide();
+      print(userCredential);
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
