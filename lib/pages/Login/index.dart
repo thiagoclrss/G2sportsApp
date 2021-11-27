@@ -4,9 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:g2sports/components/button_with_icon.dart';
 import 'package:g2sports/components/button_with_text.dart';
-import 'package:g2sports/components/login_form.dart';
+import 'package:g2sports/pages/Login/login_form.dart';
 
-import 'package:g2sports/pages/register.dart';
+import 'package:g2sports/pages/Register/index.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -85,10 +85,11 @@ class _LoginState extends State<Login> {
                 LoginForm(),
                 SizedBox(height: 25),
                 ButtonWithText(
+                  isDisabled: false,
                   label: "Quero criar uma conta",
                   btnColor: Colors.grey.shade100,
                   txtColor: Colors.black38,
-                  txtSize: 25,
+                  txtSize: 18,
                   width: 313,
                   height: 60,
                   handlePress: () {

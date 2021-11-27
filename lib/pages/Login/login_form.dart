@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:validadores/Validador.dart';
@@ -17,28 +18,63 @@ class LoginForm extends StatefulWidget {
 class LoginFormState extends State<LoginForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
-  void handleSubmit() {
+  void handleSubmit() async {
     String email = emailController.text.toString();
     String password = passwordController.text.toString();
-    Object formData = {email, password};
+
     if (_formKey.currentState!.validate()) {
-      print(formData);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Realizando login...'),
-          backgroundColor: Colors.green,
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Erro ao realizar login'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      try {
+        setState(() {
+          isLoading = true;
+        });
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login realizado com sucesso'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        setState(() {
+          isLoading = false;
+        });
+      } on FirebaseAuthException catch (e) {
+        switch (e.code) {
+          case 'user-not-found':
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Nenhum usuário encontrado para esse e-mail.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            setState(() {
+              isLoading = false;
+            });
+            break;
+          case 'wrong-password':
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Senha errada fornecida para esse usuário.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            break;
+          default:
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Erro ao realizar login.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+        }
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -83,10 +119,11 @@ class LoginFormState extends State<LoginForm> {
           ),
           SizedBox(height: 50),
           ButtonWithText(
+            isDisabled: isLoading,
             label: "Entrar",
             btnColor: Color(0xFF593CFF),
             txtColor: Colors.white,
-            txtSize: 40,
+            txtSize: 36,
             width: 313,
             height: 60,
             handlePress: handleSubmit,
@@ -94,18 +131,5 @@ class LoginFormState extends State<LoginForm> {
         ],
       ),
     );
-  }
-}
-
-String? validatePassword(String? value) {
-  RegExp regex = RegExp(r'^.{6,}$');
-  if (value.toString().isEmpty) {
-    return 'Digite uma senha';
-  } else {
-    if (!regex.hasMatch(value.toString())) {
-      return 'Digite uma senha de no mínimo 6 caracteres';
-    } else {
-      return null;
-    }
   }
 }

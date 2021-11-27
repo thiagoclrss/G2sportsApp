@@ -10,6 +10,7 @@ class ButtonWithText extends StatelessWidget {
       required this.txtSize,
       required this.width,
       required this.height,
+      required this.isDisabled,
       required this.handlePress})
       : super(key: key);
 
@@ -19,6 +20,7 @@ class ButtonWithText extends StatelessWidget {
   final double txtSize;
   final double width;
   final double height;
+  final bool isDisabled;
   final void Function() handlePress;
 
   @override
@@ -27,7 +29,7 @@ class ButtonWithText extends StatelessWidget {
       height: height,
       width: width,
       child: ElevatedButton(
-        onPressed: handlePress,
+        onPressed: isDisabled ? null : handlePress,
         child: Text(
           label,
           style: TextStyle(
@@ -37,7 +39,8 @@ class ButtonWithText extends StatelessWidget {
         ),
         style: ButtonStyle(
           alignment: Alignment.center,
-          backgroundColor: MaterialStateProperty.all(btnColor),
+          backgroundColor: MaterialStateProperty.all(
+              isDisabled ? Colors.grey.shade400 : btnColor),
         ),
       ),
     );

@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:g2sports/components/button_with_text.dart';
-import 'package:g2sports/components/register_form.dart';
+import 'package:g2sports/pages/Register/register_form.dart';
 
-import 'package:g2sports/pages/login.dart';
+import 'package:g2sports/pages/Login/index.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -47,10 +47,11 @@ class _RegisterState extends State<Register> {
                 RegisterForm(),
                 SizedBox(height: 25),
                 ButtonWithText(
+                  isDisabled: false,
                   label: "Já possuo uma conta",
                   btnColor: Colors.grey.shade100,
                   txtColor: Colors.black38,
-                  txtSize: 28,
+                  txtSize: 18,
                   width: 313,
                   height: 60,
                   handlePress: () {

@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 
 import 'package:g2sports/components/loading.dart';
-import 'package:g2sports/pages/login.dart';
+import 'package:g2sports/pages/Login/index.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
