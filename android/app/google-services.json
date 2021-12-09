@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "620857749721",
+    "project_id": "g2sportsapp",
+    "storage_bucket": "g2sportsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620857749721:android:a2c7aa8c0435021e63cec8",
+        "android_client_info": {
+          "package_name": "com.example.g2sports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620857749721-qhat19d5up8gfgjd95o7gpu94co8g9o5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.g2sports",
+            "certificate_hash": "f4f6211d40fddebeb3c7786d383089250984a84e"
+          }
+        },
+        {
+          "client_id": "620857749721-hs2egdjfhgfgsiomgcc10j9qvu190g0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgnOVmCtAwQUQmAr4P9hDzEjxxQC7oHEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620857749721-hs2egdjfhgfgsiomgcc10j9qvu190g0h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

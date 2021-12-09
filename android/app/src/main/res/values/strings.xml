@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">G2Sports</string>
+  <string name="facebook_app_id">354261916468636</string>
+  <string name="fb_login_protocol_scheme">fb354261916468636</string>
+</resources>
