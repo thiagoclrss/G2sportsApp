@@ -27,6 +27,13 @@ class _LoginState extends State<Login> {
         context.loaderOverlay.show();
         UserCredential userCredential = await signInWithGoogle();
         context.loaderOverlay.hide();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login realizado com sucesso.'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        print(userCredential);
       } on FirebaseAuthException catch (e) {
         switch (e.code) {
           case 'account-exists-with-different-credential':
@@ -57,6 +64,13 @@ class _LoginState extends State<Login> {
         context.loaderOverlay.show();
         UserCredential userCredential = await signInWithFacebook();
         context.loaderOverlay.hide();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login realizado com sucesso.'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        print(userCredential);
       } on FirebaseAuthException catch (e) {
         switch (e.code) {
           case 'account-exists-with-different-credential':
