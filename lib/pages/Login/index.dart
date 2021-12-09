@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:g2sports/pages/home_page.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -31,6 +32,12 @@ class _LoginState extends State<Login> {
           const SnackBar(
             content: Text('Login realizado com sucesso.'),
             backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
           ),
         );
         print(userCredential);
@@ -68,6 +75,12 @@ class _LoginState extends State<Login> {
           const SnackBar(
             content: Text('Login realizado com sucesso.'),
             backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
           ),
         );
         print(userCredential);
